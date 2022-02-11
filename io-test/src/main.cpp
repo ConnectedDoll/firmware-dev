@@ -7,8 +7,6 @@
 #include <ArduinoJson.h>
 #include <AsyncJson.h>
 
-// #include <FastLED.h>
-#include <Adafruit_NeoPixel.h>
 
 WifiUtil wifiUtil;
 // AP モード SSID
@@ -23,6 +21,9 @@ AsyncWebServer webServer(HTTP_PORT);
 // LED D2
 #define D2 13
 
+// #include <FastLED.h>
+#include <Adafruit_NeoPixel.h>
+
 // RGB LED PIN D3 - D7
 #define RGB_LED_PIN 4
 #define NUMPIXELS 4
@@ -32,6 +33,7 @@ Adafruit_NeoPixel pixels(NUMPIXELS, RGB_LED_PIN, NEO_GRB + NEO_KHZ800);
 // D2 , RGB LED 初期化
 void setStatusLED(bool isON) {
   digitalWrite(D2, (isON)? HIGH : LOW);
+  Serial.print("D2 "); Serial.println((isON)? "HIGH" : "LOW");  
 }
 
 void webServerSetup() {
@@ -54,9 +56,12 @@ void webServerSetup() {
 }
 
 void setup() {
+  Serial.begin(115200);
+
   // D2
   pinMode(D2, OUTPUT);
   // IO4 RGB LED 初期化
+  pinMode(RGB_LED_PIN, OUTPUT);
   // FastLED.addLeds<WS2812B, RGB_LED_PIN>(leds, NUMPIXELS);
   pixels.begin();
 
@@ -100,7 +105,7 @@ void loop() {
   pixels.setPixelColor(3, pixels.Color(0, 0, 0));
   pixels.show();
   pixels.clear();
-  
+
   setStatusLED(false);
   delay(500);
 }
