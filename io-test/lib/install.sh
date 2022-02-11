@@ -2,7 +2,7 @@
 
 git clone git@github.com:arduino-libraries/Ethernet.git
 git clone git@github.com:tzikis/ArduinoMD5.git
-# git clone git@github.com:adafruit/Adafruit_NeoPixel.git
+git clone git@github.com:adafruit/Adafruit_NeoPixel.git
 git clone git@github.com:FastLED/FastLED.git
 git clone git@github.com:earlephilhower/ESP8266Audio.git
 git clone git@github.com:hideakitai/ArduinoOSC.git
